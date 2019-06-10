@@ -1,0 +1,40 @@
+<div class="main col-12 pt-3">
+  <div class="custom-card col-10">
+    <div class="titulo border-bottom">
+      <span style="font-size: 1.3rem">Gabriel Kojima - Métodos 3</span>
+    </div>
+    <div class="c-body form-inline pt-2">
+      <div class="col-12">
+        <mat-form-field class="col-6">
+          <mat-label>Método</mat-label>
+          <mat-select>
+            <mat-option (click)="metodo = m" *ngFor="let m of metodos; let i = index;" value="m">
+              {{m}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-6" *ngIf="metodo !== 2">
+          <mat-label>Numero de pontos</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let pt of ptos; let i = index;" (click)="numPtos(pt);" value="pt">
+              {{pt}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field *ngFor="let ponto of x; let i = index;" class="col-12 col-md-2 col-lg-1 col-xl-1">
+          <input type="number" matInput [(ngModel)]="ponto.x" placeholder="x{{i}}">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field *ngFor="let fx of y; let i = index;" class="col-12 col-md-2 col-lg-1 col-xl-1">
+          <input type="number" matInput [(ngModel)]="fx.y" placeholder="y{{i}}">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="c-footer d-flex border-top p-1">
+      <button mat-button (click)="resolveMetodo(metodo, x.length)" class="moonlight" style="margin-left: auto;">Calcular</button>
+    </div>
+  </div>
+</div>

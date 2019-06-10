@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+}
+
+.moonlight {
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+  color: white;
+}
+
+.custom-card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
