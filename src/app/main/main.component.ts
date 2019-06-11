@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewtongService } from '../services/newtong/newtong.service';
 
 @Component({
   selector: 'app-main',
@@ -7,55 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  metodos = ['Newton', 'Newton-Gregory', 'Ajuste'];
-
-  ptos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  x = [];
-  y = [];
-  matriz = [];
-
   metodo: any;
+  ponto: number;
 
-  constructor() { }
+  x = [0, 0, 0, 0];
+
+  fx = [0, 0, 0, 0];
+
+  result: any;
+
+  constructor(public ng: NewtongService) { }
 
   ngOnInit() {
   }
 
-  numPtos(pts) {
-    this.x.splice(0);
-    this.y.splice(0);
-    for (let i = 0; i < pts; i++) {
-      this.x.push({
-        x: 0
-      });
-      this.y.push({
-        y: 0
-      });
+  calcularMetodo(metodo) {
+    if (metodo === 'newtong' || metodo === 'newton') {
+      this.result = this.ng.interpolacao(this.x, this.fx, this.ponto, metodo);
     }
   }
 
-  selectMetodo(m) {
-    this.metodo = m;
-  }
-
-  resolveMetodo(m, pts) {
-    console.log(m);
-    if (m === 'Newton-Gregory') {
-      this.newtonGregory(pts);
-    }
-  }
-
-  newtonGregory(pts) {
-    this.matriz.splice(0);
-    console.log(this.x, this.y);
-    for (let i = 0; i < pts - 1; i++) {
-      for (let j = 0; j < pts; j++) {
-        this.matriz.push({
-          fx: this.y[i + 1].y - this.y[i].y
-        });
-      }
-    }
-    console.log(this.matriz);
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 
 }
