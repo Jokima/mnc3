@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewtongService } from '../services/newtong/newtong.service';
+import { AjusteService } from '../services/ajuste/ajuste.service';
 
 @Component({
   selector: 'app-tabela',
@@ -8,7 +9,7 @@ import { NewtongService } from '../services/newtong/newtong.service';
 })
 export class TabelaComponent implements OnInit {
 
-  constructor(public ng: NewtongService) {
+  constructor(public ng: NewtongService, public aj: AjusteService) {
   }
 
   ngOnInit() {

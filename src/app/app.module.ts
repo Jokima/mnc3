@@ -9,13 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { NewtongService } from './services/newtong/newtong.service';
 import { TabelaComponent } from './tabela/tabela.component';
+import { AjusteService } from './services/ajuste/ajuste.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    TabelaComponent
-  ],
+  declarations: [AppComponent, MainComponent, TabelaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +21,7 @@ import { TabelaComponent } from './tabela/tabela.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [NewtongService],
+  providers: [NewtongService, AjusteService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

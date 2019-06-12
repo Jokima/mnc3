@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="ng.dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="ng.dataSource" *ngIf="ng.dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="x">
     <th mat-header-cell *matHeaderCellDef> X </th>
@@ -27,4 +27,45 @@
 
   <tr mat-header-row *matHeaderRowDef="ng.displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: ng.displayedColumns;"></tr>
+</table>
+
+<table mat-table [dataSource]="aj.dataSource" *ngIf="aj.dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="x">
+    <th mat-header-cell *matHeaderCellDef> X </th>
+    <td mat-cell *matCellDef="let element;"> {{element.rx}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fx">
+    <th mat-header-cell *matHeaderCellDef> F(x) </th>
+    <td mat-cell *matCellDef="let element;"> {{element.rfx}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="xy">
+    <th mat-header-cell *matHeaderCellDef> XY </th>
+    <td mat-cell *matCellDef="let element;"> {{element.rxy}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="x2">
+    <th mat-header-cell *matHeaderCellDef> X^2 </th>
+    <td mat-cell *matCellDef="let element;"> {{element.rx2}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ychapeu">
+    <th mat-header-cell *matHeaderCellDef> ŷ </th>
+    <td mat-cell *matCellDef="let element;"> {{element.rx2}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="e">
+    <th mat-header-cell *matHeaderCellDef> e </th>
+    <td mat-cell *matCellDef="let element;"> {{element.re.toFixed(4)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="e2">
+    <th mat-header-cell *matHeaderCellDef> e^2 </th>
+    <td mat-cell *matCellDef="let element;"> {{element.re2.toFixed(4)}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="aj.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: aj.displayedColumns;"></tr>
 </table>

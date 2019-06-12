@@ -1,4 +1,4 @@
-<div class="main col-12 pt-3">
+<div class="main col-12 pt-3 mb-3">
   <div class="custom-card col-10">
     <div class="titulo border-bottom">
       <span style="font-size: 1.3rem">Gabriel Kojima - Métodos 3</span>
@@ -7,20 +7,26 @@
       <div class="col-12">
         <mat-form-field class="col-6">
           <mat-label>Escolha o método</mat-label>
-          <mat-select [(ngModel)]="metodo">
-            <mat-option value="newtong">
+          <mat-select (selectionChange)="resetar()" [(ngModel)]="metodo">
+            <mat-option value="newtong" (click)="montarArray(4)">
               Newton-Gregory
             </mat-option>
-            <mat-option value="newton">
+            <mat-option value="newton" (click)="montarArray(4)">
               Newton
             </mat-option>
             <mat-option value="ajuste">
-              Ajuste
+              Ajuste (a+bx)
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="form-inline" *ngIf="metodo === 'newtong' || metodo === 'newton'">
+      <div class="col-12" *ngIf="metodo === 'ajuste'">
+        <mat-form-field class="col-12 col-md-4 col-lg-3">
+          <input type="number" matInput [(ngModel)]="numpontos" placeholder="Quantos pontos?">
+        </mat-form-field>
+        <button mat-button class="moonlight" (click)="montarArray(numpontos)">Ok</button>
+      </div>
+      <div class="form-inline" *ngIf="(metodo === 'newtong' || metodo === 'newton') || (metodo === 'ajuste' && x.length > 0)">
         <div class="col-12">
           <mat-form-field class="col-2" *ngFor="let ponto of x; let index = index; trackBy:trackByIndex;">
             <input type="number" matInput [(ngModel)]="x[index]" placeholder="x{{index}}">
@@ -31,16 +37,19 @@
             <input type="number" matInput [(ngModel)]="fx[index]" placeholder="fx{{index}}">
           </mat-form-field>
         </div>
-        <div class="col-12">
+        <div class="col-12" *ngIf="metodo === 'newtong' || metodo === 'newton'">
           <mat-form-field class="col-2">
             <input type="number" matInput [(ngModel)]="ponto" placeholder="f(p)">
           </mat-form-field>
         </div>
       </div>
-      <div class="col-12 mb-3" *ngIf="result">
+      <div class="col-12" *ngIf="((metodo === 'newtong' || metodo === 'newton') && result)">
         <h3>F(p) = {{result}}</h3>
       </div>
-      <div class="col-12 mb-3" *ngIf="((metodo === 'newtong' || metodo === 'newton') && ng.dataSource)">
+      <div class="col-12" *ngIf="(metodo === 'ajuste' && result)">
+        <h3>R2 = {{result}}</h3>
+      </div>
+      <div class="col-12 mb-3" *ngIf="ng.dataSource || aj.dataSource">
         <app-tabela></app-tabela>
       </div>
     </div>
